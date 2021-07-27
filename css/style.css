@@ -1,0 +1,35 @@
+body
+{
+    font-family: 'Roboto', sans-serif;
+    background-color: #EEF9BF;
+}
+h1
+{
+    font-size: 60px;
+    font-weight: 1000;
+    margin: 50px 0px;
+    color: #75B79E;
+    text-align: center;
+}
+.container
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.jogo
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.jogo div
+{
+    border-radius: 10px;
+    width: 10em;
+    height: 13em;
+    margin: 15px;
+    background-color: #75B79E;
+}
