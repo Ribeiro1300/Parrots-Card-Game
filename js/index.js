@@ -1,4 +1,17 @@
-// as divs serão criadas de acordo com o número de cartas escolhidas pelo usuário
+// Configurações Gerais
+
+const virarCarta = document.querySelectorAll(".carta")
+const size = virarCarta.length
+for(let i = 0; i < size; i++)
+{
+    virarCarta[i].addEventListener("click", function()
+    {
+        let estado = this.querySelectorAll("div")
+        estado[0].classList.add("virado")
+        estado[1].classList.add("virado")
+    })
+}
+
 function start()
 {
     let qtdCartas = prompt(`Quantas cartas você quer?
@@ -14,9 +27,11 @@ OBS: Apenas números pares entre 4 e 14`)
         start()
     }
 }
-function iniciarJogo(qtd)
+function iniciarJogo()
 {
-    console.log(qtd);
+    
+    
+
 }
 
 
@@ -36,4 +51,4 @@ function fimDoJogo()
     reiniciar()
     
 }
-fimDoJogo()
+iniciarJogo()
