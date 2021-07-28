@@ -1,19 +1,28 @@
 // Configurações Gerais
+//variáveis globais 
+let contador = 0
 
-const virarCarta = document.querySelectorAll(".carta")
-const size = virarCarta.length
-for(let i = 0; i < size; i++)
+
+function adicionarClicks()
 {
-    virarCarta[i].addEventListener("click", function()
+    const virarCarta = document.querySelectorAll(".carta")
+    const size = virarCarta.length
+    for(let i = 0; i < size; i++)
     {
-        let estado = this.querySelectorAll("div")
-        estado[0].classList.add("virado")
-        estado[1].classList.add("virado")
-    })
+        virarCarta[i].addEventListener("click", function()
+        {
+            let estado = this.querySelectorAll("div")
+            estado[0].classList.add("virado")
+            estado[1].classList.add("virado")
+            contador++
+        })
+    }
 }
+
 
 function start()
 {
+    contador = 0
     let qtdCartas = prompt(`Quantas cartas você quer?
 OBS: Apenas números pares entre 4 e 14`)
     let par = qtdCartas % 2
@@ -27,9 +36,28 @@ OBS: Apenas números pares entre 4 e 14`)
         start()
     }
 }
-function iniciarJogo()
+function iniciarJogo(qtd)
 {
-    
+    let i = 0
+    let seletor = document.querySelector(".jogo")
+    let div = ""
+    while(i < qtd)
+    {
+        div += `
+        <div class="carta">
+            <div class="front-face">
+                <img src="img/front.png" alt="" srcset="">
+            </div>
+            <div class="back-face">
+                <img src="img/revertitparrot.gif" alt="" srcset="">
+            </div>
+        </div>
+    `
+
+        i++
+    }
+    seletor.innerHTML = div
+    adicionarClicks()
     
 
 }
@@ -38,7 +66,7 @@ function iniciarJogo()
 
 function fimDoJogo()
 {
-    alert("Você ganhou em X jogadas!")
+    alert(`Você ganhou em ${contador/2} jogadas!`)
     function reiniciar()
     {
         let escolha = prompt(`Você gostaria de jogar novamente?
@@ -46,9 +74,9 @@ function fimDoJogo()
         if (escolha == "sim")
             start()
         else if (escolha == "não")
-            window.close
+            alert("Então, tchau!")
     }
     reiniciar()
     
 }
-iniciarJogo()
+iniciarJogo(3)
