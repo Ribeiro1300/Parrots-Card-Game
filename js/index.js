@@ -1,8 +1,38 @@
 // Configurações Gerais
 //variáveis globais 
 let contador = 0
+let ultimaCarta = ""
+let ultimaDiv
 
-
+function verificarCartas(elemento)
+{
+    let cartaSelecionada = elemento.querySelector("img")
+    let imagem = cartaSelecionada.getAttribute("src")
+    if (ultimaCarta == "")
+    {
+        ultimaCarta = imagem
+        ultimaDiv = elemento
+    }
+    else
+    {
+        if (ultimaCarta != imagem)
+        {
+            setTimeout(function(){
+                let div1 = elemento.querySelectorAll("div")
+                let div2 = ultimaDiv.querySelectorAll("div")
+                div1[0].classList.remove("virado")
+                div1[1].classList.remove("virado")
+                div2[0].classList.remove("virado")
+                div2[1].classList.remove("virado")
+                ultimaCarta = ""
+                ultimaDiv = null
+            }, 1000)
+            
+        }
+        
+    }
+    
+}
 function adicionarClicks()
 {
     const virarCarta = document.querySelectorAll(".carta")
@@ -18,7 +48,6 @@ function adicionarClicks()
         })
     }
 }
-
 
 function start()
 {
@@ -41,10 +70,10 @@ function iniciarJogo(qtd)
     let i = 0
     let seletor = document.querySelector(".jogo")
     let div = ""
-    while(i < qtd)
+    for (let i = 0; i < qtd; i++)
     {
         div += `
-        <div class="carta">
+        <div class="carta" onclick = "verificarCartas(this)">
             <div class="front-face">
                 <img src="img/front.png" alt="" srcset="">
             </div>
@@ -54,7 +83,6 @@ function iniciarJogo(qtd)
         </div>
     `
 
-        i++
     }
     seletor.innerHTML = div
     adicionarClicks()
@@ -62,17 +90,15 @@ function iniciarJogo(qtd)
 
 }
 
-
-
 function fimDoJogo()
 {
     alert(`Você ganhou em ${contador/2} jogadas!`)
-    function reiniciar()
+    function reiniciar()//caso eu queira implementar opção de limite de tempo
     {
         let escolha = prompt(`Você gostaria de jogar novamente?
     sim ou não`)
         if (escolha == "sim")
-            start()
+            location.reload()
         else if (escolha == "não")
             alert("Então, tchau!")
     }
