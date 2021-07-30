@@ -7,7 +7,7 @@ const arrayGifs = ["img/bobrossparrot.gif", "img/bobrossparrot.gif", "img/metalp
 
 function verificarCartas(elemento)
 {
-    let cartaSelecionada = elemento.querySelector("img")
+    let cartaSelecionada = elemento.querySelector(".gif")
     let imagem = cartaSelecionada.getAttribute("src")
     if (ultimaCarta == "")
     {
@@ -29,6 +29,11 @@ function verificarCartas(elemento)
                 ultimaDiv = null
             }, 500)
             
+        }
+        else
+        {
+            ultimaCarta = ""
+            ultimaDiv = null
         }
         
     }
@@ -72,7 +77,6 @@ function iniciarJogo(qtd)
     let seletor = document.querySelector(".jogo")
     let div = ""
     let arrayMisturado = arrayGifs.slice(0,(qtd))
-    console.log(arrayMisturado);
     arrayMisturado.sort(function comparador() { 
         return Math.random() - 0.5; 
     })
@@ -85,7 +89,7 @@ function iniciarJogo(qtd)
                 <img src="img/front.png" alt="" srcset="">
             </div>
             <div class="back-face">
-                <img src=${gif} alt="" srcset="">
+                <img class="gif" src=${gif} alt="" srcset="">
             </div>
         </div>
     `
@@ -112,4 +116,3 @@ function fimDoJogo()
     reiniciar()
     
 }
-iniciarJogo(6)
