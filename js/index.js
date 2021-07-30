@@ -1,9 +1,10 @@
-// Configurações Gerais
 //variáveis globais 
 let contador = 0
+let totalCartas = 0
 let ultimaCarta = ""
 let ultimaDiv
-const arrayGifs = ["img/bobrossparrot.gif", "img/bobrossparrot.gif", "img/metalparrot.gif", "img/metalparrot.gif", "img/tripletsparrot.gif", "img/tripletsparrot.gif", "img/fiesparrot.gif", "img/fiesparrot.gif", "img/explodyparrot.gif", "img/explodyparrot.gif", "img/revertitparrot.gif", "img/revertitparrot.gif", "img/unicornparrot.gif", "img/unicornparrot.gif"]
+const arrayGifs = ["img/bobrossparrot.gif", "img/bobrossparrot.gif", "img/metalparrot.gif", "img/metalparrot.gif", "img/tripletsparrot.gif", "img/tripletsparrot.gif", "img/fiestaparrot.gif", "img/fiestaparrot.gif", "img/explodyparrot.gif", "img/explodyparrot.gif", "img/revertitparrot.gif", "img/revertitparrot.gif", "img/unicornparrot.gif", "img/unicornparrot.gif"]
+
 
 function verificarCartas(elemento)
 {
@@ -37,6 +38,15 @@ function verificarCartas(elemento)
         }
         
     }
+    setTimeout(function()
+    {
+        let cartasViradas = document.querySelectorAll(".virado")
+        if (cartasViradas.length == totalCartas)
+        {
+            fimDoJogo()
+        }
+    },100)
+    
     
 }
 function adicionarClicks()
@@ -73,6 +83,7 @@ OBS: Apenas números pares entre 4 e 14`)
 }
 function iniciarJogo(qtd)
 {
+    totalCartas = qtd*2
     let i = 0
     let seletor = document.querySelector(".jogo")
     let div = ""
@@ -107,12 +118,14 @@ function fimDoJogo()
     function reiniciar()//caso eu queira implementar opção de limite de tempo
     {
         let escolha = prompt(`Você gostaria de jogar novamente?
-    sim ou não`)
-        if (escolha == "sim")
+    s ou n`)
+        if (escolha == "s")
             location.reload()
-        else if (escolha == "não")
+        else if (escolha == "n")
             alert("Então, tchau!")
     }
     reiniciar()
     
 }
+iniciarJogo(4)
+
