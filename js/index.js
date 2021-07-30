@@ -3,6 +3,7 @@
 let contador = 0
 let ultimaCarta = ""
 let ultimaDiv
+const arrayGifs = ["img/bobrossparrot.gif", "img/bobrossparrot.gif", "img/metalparrot.gif", "img/metalparrot.gif", "img/tripletsparrot.gif", "img/tripletsparrot.gif", "img/fiesparrot.gif", "img/fiesparrot.gif", "img/explodyparrot.gif", "img/explodyparrot.gif", "img/revertitparrot.gif", "img/revertitparrot.gif", "img/unicornparrot.gif", "img/unicornparrot.gif"]
 
 function verificarCartas(elemento)
 {
@@ -26,7 +27,7 @@ function verificarCartas(elemento)
                 div2[1].classList.remove("virado")
                 ultimaCarta = ""
                 ultimaDiv = null
-            }, 1000)
+            }, 500)
             
         }
         
@@ -70,15 +71,21 @@ function iniciarJogo(qtd)
     let i = 0
     let seletor = document.querySelector(".jogo")
     let div = ""
+    let arrayMisturado = arrayGifs.slice(0,(qtd))
+    console.log(arrayMisturado);
+    arrayMisturado.sort(function comparador() { 
+        return Math.random() - 0.5; 
+    })
     for (let i = 0; i < qtd; i++)
     {
+        let gif = arrayMisturado[i]
         div += `
         <div class="carta" onclick = "verificarCartas(this)">
             <div class="front-face">
                 <img src="img/front.png" alt="" srcset="">
             </div>
             <div class="back-face">
-                <img src="img/revertitparrot.gif" alt="" srcset="">
+                <img src=${gif} alt="" srcset="">
             </div>
         </div>
     `
@@ -105,4 +112,4 @@ function fimDoJogo()
     reiniciar()
     
 }
-iniciarJogo(3)
+iniciarJogo(6)
