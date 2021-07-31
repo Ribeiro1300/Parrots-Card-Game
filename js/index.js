@@ -127,5 +127,4 @@ function fimDoJogo()
     reiniciar()
     
 }
-iniciarJogo(4)
-
+start()
